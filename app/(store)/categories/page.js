@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ShopHero from "../components/ShopHero"; // We can reuse the ShopHero or make a custom one.
@@ -24,7 +24,9 @@ export default function CategoriesPage() {
     return (
         <>
             {/* Reusing ShopHero, but you could customize it if needed */}
-            <ShopHero title="Categories" breadcrumbs="Home > Categories" />
+            <Suspense fallback={<div>Loading...</div>}>
+                <ShopHero title="Categories" breadcrumbs="Home > Categories" />
+            </Suspense>
 
             <section className="max-w-7xl mx-auto py-20 px-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
