@@ -16,7 +16,7 @@ export default function LeadDetails() {
 
     async function getLeadDetails() {
         try {
-            const res = await axios.get(`http://localhost:5000/api/leads/${id}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leads/${id}`);
             setLead(res.data);
         } catch (error) {
             console.error("Failed to fetch lead details:", error);

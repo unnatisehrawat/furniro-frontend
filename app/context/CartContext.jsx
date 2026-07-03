@@ -9,7 +9,7 @@ export function CartProvider({ children }) {
 
     async function refreshCartCount() {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/cart", {
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, {
                 withCredentials: true
             });
             const totalItems = data.items ? data.items.length : 0;

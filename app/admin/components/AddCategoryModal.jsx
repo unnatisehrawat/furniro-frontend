@@ -16,7 +16,7 @@ export default function AddCategoryModal({ close, refresh }) {
             formData.append("name", name);
             formData.append("image", image);
 
-            await axios.post("http://localhost:5000/api/categories", formData, { withCredentials: true })
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories`, formData, { withCredentials: true })
 
             refresh()
             close()

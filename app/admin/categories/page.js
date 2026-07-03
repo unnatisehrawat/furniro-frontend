@@ -11,7 +11,7 @@ export default function Category(){
     const [open , setOpen ] = useState(false);
 
     async function getCategories(){
-    const res = await axios.get("http://localhost:5000/api/categories");
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories`);
     setCategories(res.data);
 }
 

@@ -14,9 +14,9 @@ export default function AdminPage() {
         async function fetchStats() {
             try {
                 const [categoriesRes, productsRes, leadsRes] = await Promise.all([
-                    axios.get("http://localhost:5000/api/categories"),
-                    axios.get("http://localhost:5000/api/products"),
-                    axios.get("http://localhost:5000/api/leads")
+                    axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories`),
+                    axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products`),
+                    axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leads`)
                 ]);
 
                 setCounts({

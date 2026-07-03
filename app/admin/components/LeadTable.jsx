@@ -9,7 +9,7 @@ export default function LeadTable({ leads, refresh }) {
         if (!window.confirm("Are you sure you want to delete this lead?")) return;
         
         try {
-            await axios.delete(`http://localhost:5000/api/leads/${id}`, { withCredentials: true })
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leads/${id}`, { withCredentials: true })
             refresh()
         } catch (error) {
             console.log(error)

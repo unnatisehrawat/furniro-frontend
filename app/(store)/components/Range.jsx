@@ -14,7 +14,7 @@ export default function Range(){
 
     async function getCategories(){
         try {
-            const {data } = await axios.get("http://localhost:5000/api/categories")
+            const {data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories`)
             setCategories(data)
         } catch (error) {
             console.log(error)

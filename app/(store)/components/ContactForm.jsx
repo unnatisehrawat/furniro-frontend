@@ -28,7 +28,7 @@ export default function ContactForm(){
         setIsSubmitting(true);
         
         try {
-            await axios.post("http://localhost:5000/api/leads", formData);
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leads`, formData);
             alert("Lead submitted successfully");
             setFormData({ name: "", email: "", subject: "", message: "" });
         } catch (error) {

@@ -17,7 +17,7 @@ export default function OurProducts() {
 
     async function getProducts() {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/products")
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products`)
             setProducts(data)
         } catch (error) {
             console.log(error)
@@ -25,7 +25,7 @@ export default function OurProducts() {
     }
     async function handleAddToCart(productId) {
         try {
-            await axios.post("http://localhost:5000/api/cart", { productId }, { withCredentials: true });
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { productId }, { withCredentials: true });
             refreshCartCount();
             alert("Added to cart!");
         } catch (error) {

@@ -22,7 +22,7 @@ export default function FilterBar({
     useEffect(() => {
         async function fetchCategories() {
             try {
-                const res = await axios.get("http://localhost:5000/api/categories")
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories`)
                 setCategories(res.data)
             } catch (error) {
                 console.error("Failed to fetch categories", error)

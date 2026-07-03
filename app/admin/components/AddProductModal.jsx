@@ -34,7 +34,7 @@ export default function AddProductModal({ close, refresh, categories }) {
             formData.append("image", image);
             sizes.forEach(size => formData.append("size", size));
 
-            await axios.post("http://localhost:5000/api/products", formData, { withCredentials: true })
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products`, formData, { withCredentials: true })
             
             refresh()
             close()

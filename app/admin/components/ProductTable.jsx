@@ -6,7 +6,7 @@ export default function ProductTable({ products, refresh }) {
     async function deleteProduct(id) {
         if (!confirm("Are you sure you want to delete this product?")) return;
         try {
-            await axios.delete(`http://localhost:5000/api/products/${id}`, { withCredentials: true });
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products/${id}`, { withCredentials: true });
             refresh();
         } catch (error) {
             console.log(error);

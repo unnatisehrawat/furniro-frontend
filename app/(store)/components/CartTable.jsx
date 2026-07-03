@@ -13,7 +13,7 @@ export default function CartTable(){
 
     async function getCart(){
         try {
-            const { data } = await axios.get("http://localhost:5000/api/cart", { withCredentials: true }) 
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { withCredentials: true }) 
             setCart(data)
         } catch (error) {
             alert('failed to fetch cart')
@@ -23,7 +23,7 @@ export default function CartTable(){
 
     async function removeFromCart(productId) {
         try {
-            await axios.delete(`http://localhost:5000/api/cart/${productId}`, { withCredentials: true })
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart/${productId}`, { withCredentials: true })
             getCart()
             refreshCartCount()
         } catch (error) {

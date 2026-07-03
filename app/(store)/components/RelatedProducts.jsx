@@ -18,7 +18,7 @@ export default function RelatedProducts({ categoryId, currentProductId }) {
 
     async function fetchRelatedProducts() {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/products?category=${categoryId}`)
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products?category=${categoryId}`)
             
         
             const relatedData = data.filter(product => product._id !== currentProductId);
@@ -31,7 +31,7 @@ export default function RelatedProducts({ categoryId, currentProductId }) {
 
     async function handleAddToCart(productId) {
         try {
-            await axios.post("http://localhost:5000/api/cart", { productId }, { withCredentials: true });
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { productId }, { withCredentials: true });
             refreshCartCount();
             alert("Added to cart!");
         } catch (error) {

@@ -11,12 +11,12 @@ export default function Products(){
     const [categories , setCategories] = useState([])
     
     async function getProducts(){
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/products`);
         setProducts(res.data);
     }
 
     async function getCategories(){
-        const res = await axios.get("http://localhost:5000/api/categories");
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories`);
         setCategories(res.data);
     }
 

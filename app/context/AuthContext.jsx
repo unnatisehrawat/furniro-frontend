@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     const verifyAuth = async () => {
         setIsLoading(true);
         try {
-            const { data } = await axios.get("http://localhost:5000/api/auth/verify", {
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/verify`, {
                 withCredentials: true
             });
             setUser(data.user);
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/logout`, {}, { withCredentials: true });
             setUser(null);
             router.push("/");
         } catch (error) {

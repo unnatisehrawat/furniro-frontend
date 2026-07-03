@@ -26,8 +26,8 @@ export default function AuthPage() {
 
     try {
       const endpoint = isLogin 
-        ? "http://localhost:5000/api/auth/login" 
-        : "http://localhost:5000/api/auth/register";
+        ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/login` 
+        : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/register`;
       
       const payload = isLogin 
         ? { email: formData.email, password: formData.password }

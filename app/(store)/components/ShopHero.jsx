@@ -24,7 +24,7 @@ export default function ShopHero() {
 
     async function getCategoryName() {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/categories/${categoryId}`);
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories/${categoryId}`);
             setCategoryName(data.name);
         } catch (error) {
             console.log("Failed to fetch category", error);
