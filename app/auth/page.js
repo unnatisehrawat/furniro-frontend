@@ -26,20 +26,16 @@ export default function AuthPage() {
 
     try {
       const endpoint = isLogin 
-        ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/login` 
-        : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/register`;
+        ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/user/login` 
+        : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/user/register`;
       
       const payload = isLogin 
         ? { email: formData.email, password: formData.password }
         : formData;
 
-      const response = await axios.post(endpoint, payload, { withCredentials: true });
+      await axios.post(endpoint, payload, { withCredentials: true });
       
-      if (response.data.role === "admin") {
-        router.push("/admin/dashboard");
-      } else {
-        router.push("/");
-      }
+      router.push("/");
       
     } catch (err) {
       setError(err.response?.data?.message || "Authentication failed. Please try again.");

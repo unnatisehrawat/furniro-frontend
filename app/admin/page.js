@@ -17,19 +17,14 @@ export default function AdminAuthPage() {
     setError("");
 
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/login`,
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/admin/login`,
         { email, password },
         { withCredentials: true }
       );
       
-      if (response.data.role === "admin") {
-        await verifyAuth();
-        router.push("/admin/dashboard");
-      } else {
-        setError("You are not authorized as an admin.");
-        setTimeout(() => router.push("/"), 2000);
-      }
+      await verifyAuth();
+      router.push("/admin/dashboard");
       
     } catch (err) {
       setError(err.response?.data?.message || "Login failed. Please try again.");
