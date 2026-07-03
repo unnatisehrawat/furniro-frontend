@@ -31,7 +31,9 @@ export default function NavBar(){
                 <div className="flex items-center gap-6">
                     {user ? (
                         <div className="relative group cursor-pointer flex items-center py-2">
-                            <User size={24} className="hover:text-brand transition-colors" />
+                            <div className="w-9 h-9 flex items-center justify-center bg-brand text-white font-semibold rounded-full hover:bg-brand/90 transition-colors uppercase text-sm shadow-sm">
+                                {user.name ? user.name[0] : user.email[0]}
+                            </div>
                             {/* Hover Dropdown */}
                             <div className="absolute right-0 top-full mt-0 w-56 bg-white shadow-xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
                                 <div className="p-4 border-b border-gray-100">
