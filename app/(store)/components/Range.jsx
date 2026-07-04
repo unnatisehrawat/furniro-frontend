@@ -30,20 +30,20 @@ export default function Range(){
             <p className="text-gray-500 text-center mt-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-14 px-4 sm:px-0">
                 {displayedCategories.map((category) =>(
                     
                     <Link href={`/shop?category=${category._id}`} key={category._id}>
                         <div className="flex flex-col items-center cursor-pointer">
-                            <div className="relative w-full h-[400px]">
+                            <div className="relative w-full h-[180px] sm:h-[400px]">
                                 <Image 
                                     src={category.image}
                                     alt={category.name}
                                     fill
-                                    className="object-cover hover:scale-105 transition duration-300 rounded-2xl"
+                                    className="object-cover hover:scale-105 transition duration-300 rounded-xl sm:rounded-2xl"
                                 />
                             </div>
-                            <h3 className="text-2xl font-semibold mt-6">{category.name}</h3>
+                            <h3 className="text-base sm:text-2xl font-semibold mt-3 sm:mt-6 text-center">{category.name}</h3>
                         </div>
                     </Link>
 

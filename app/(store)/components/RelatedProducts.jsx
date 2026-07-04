@@ -50,13 +50,13 @@ export default function RelatedProducts({ categoryId, currentProductId }) {
             </h2>
 
            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 px-3 sm:px-0">
                 {products.slice(0, 4).map((product) => (
                     <div
                         key={product._id}
-                        className="group bg-[#F4F5F7] overflow-hidden"
+                        className="group bg-[#F4F5F7] overflow-hidden flex flex-col rounded-lg"
                     >
-                        <div className="relative h-72 overflow-hidden">
+                        <div className="relative h-44 sm:h-72 overflow-hidden">
                             <Image
                                 src={product.image}
                                 alt={product.name}
@@ -65,28 +65,30 @@ export default function RelatedProducts({ categoryId, currentProductId }) {
                             />
                             
                             {/* Hover overlay with add to cart button */}
-                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center">
+                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center p-2">
                                 <button
                                     onClick={() => handleAddToCart(product._id)}
-                                    className="bg-white text-brand font-semibold px-8 py-3 cursor-pointer hover:bg-brand hover:text-white transition-colors"
+                                    className="bg-white text-brand font-semibold px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-base cursor-pointer hover:bg-brand hover:text-white transition-colors"
                                 >
                                     Add to Cart
                                 </button>
                             </div>
                         </div>
 
-                        <Link href={`/product/${product._id}`}>
-                            <div className="p-4 bg-[#F4F5F7]">
-                                <h3 className="text-2xl font-semibold text-gray-800">
-                                    {product.name}
-                                </h3>
+                        <Link href={`/product/${product._id}`} className="flex-grow flex flex-col">
+                            <div className="p-3 sm:p-4 bg-[#F4F5F7] flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h3 className="text-base sm:text-2xl font-semibold text-gray-800 line-clamp-1">
+                                        {product.name}
+                                    </h3>
 
-                                <p className="text-gray-500 mt-2 truncate">
-                                    {product.description}
-                                </p>
+                                    <p className="text-gray-500 text-xs sm:text-base mt-1 line-clamp-2">
+                                        {product.description}
+                                    </p>
+                                </div>
 
-                                <div className="mt-3">
-                                    <span className="font-bold text-xl text-gray-900">
+                                <div className="mt-2 sm:mt-3">
+                                    <span className="font-bold text-sm sm:text-xl text-gray-900">
                                         ₹{product.price}
                                     </span>
                                 </div>
