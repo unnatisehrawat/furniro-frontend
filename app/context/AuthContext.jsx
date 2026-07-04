@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter, usePathname } from "next/navigation";
+import { useCart } from "./CartContext";
 
 const AuthContext = createContext();
 
@@ -10,6 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
+    const { clearCart } = useCart();
 
     const verifyAuth = async () => {
         setIsLoading(true);
@@ -33,6 +35,7 @@ export const AuthProvider = ({ children }) => {
         try {
             await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/logout`, {}, { withCredentials: true });
             setUser(null);
+            clearCart();        // ← reset cart badge immediately on logout
             router.push("/");
         } catch (error) {
             console.error("Logout failed", error);

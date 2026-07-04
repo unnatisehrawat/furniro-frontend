@@ -7,6 +7,10 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
     const [cartCount, setCartCount] = useState(0);
 
+    function clearCart() {
+        setCartCount(0);
+    }
+
     async function refreshCartCount() {
         try {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, {
@@ -24,7 +28,7 @@ export function CartProvider({ children }) {
     }, []);
 
     return (
-        <CartContext.Provider value={{ cartCount, refreshCartCount }}>
+        <CartContext.Provider value={{ cartCount, refreshCartCount, clearCart }}>
             {children}
         </CartContext.Provider>
     );
