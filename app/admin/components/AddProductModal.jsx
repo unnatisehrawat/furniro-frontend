@@ -2,6 +2,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { X, Upload } from "lucide-react"
+import toast from "react-hot-toast"
 
 export default function AddProductModal({ close, refresh, categories }) {
     const [name, setName] = useState("")
@@ -40,7 +41,7 @@ export default function AddProductModal({ close, refresh, categories }) {
             close()
         } catch (error) {
             console.log(error)
-            alert("Failed to add product")
+            toast.error("Failed to add product")
         } finally {
             setIsSubmitting(false)
         }

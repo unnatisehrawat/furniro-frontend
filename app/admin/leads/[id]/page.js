@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, User, Mail, Calendar, MessageSquare } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function LeadDetails() {
     const { id } = useParams();
@@ -20,7 +21,7 @@ export default function LeadDetails() {
             setLead(res.data);
         } catch (error) {
             console.error("Failed to fetch lead details:", error);
-            alert("Lead not found");
+            toast.error("Lead not found");
         } finally {
             setLoading(false);
         }

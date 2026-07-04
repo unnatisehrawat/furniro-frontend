@@ -3,6 +3,7 @@
 import { MapPin, Phone, Clock } from "lucide-react"
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function ContactForm(){
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,7 +22,7 @@ export default function ContactForm(){
         e.preventDefault();
         
         if (!formData.name || !formData.email || !formData.message) {
-            alert("Please fill in all required fields (Name, Email, Message)");
+            toast.error("Please fill in all required fields (Name, Email, Message)");
             return;
         }
 
@@ -29,11 +30,11 @@ export default function ContactForm(){
         
         try {
             await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/leads`, formData);
-            alert("Lead submitted successfully");
+            toast.success("Message sent successfully!");
             setFormData({ name: "", email: "", subject: "", message: "" });
         } catch (error) {
             console.error("Failed to send message:", error);
-            alert("Failed to submit lead");
+            toast.error("Failed to send message. Please try again.");
         } finally {
             setIsSubmitting(false);
         }

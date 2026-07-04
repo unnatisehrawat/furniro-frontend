@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function CategoryTable({ categories, refresh }) {
     async function deleteCategory(id) {
@@ -10,7 +11,7 @@ export default function CategoryTable({ categories, refresh }) {
             refresh();
         } catch (error) {
             console.log(error);
-            alert("Failed to delete category");
+            toast.error("Failed to delete category");
         }
     }
 

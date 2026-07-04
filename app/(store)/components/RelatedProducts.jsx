@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react";
 import { useCart } from "@/app/context/CartContext";
+import toast from "react-hot-toast";
 
 export default function RelatedProducts({ categoryId, currentProductId }) {
     const [products, setProducts] = useState([]);
@@ -33,10 +34,10 @@ export default function RelatedProducts({ categoryId, currentProductId }) {
         try {
             await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { productId }, { withCredentials: true });
             refreshCartCount();
-            alert("Added to cart!");
+            toast.success("Added to cart!");
         } catch (error) {
             console.log(error);
-            alert("Failed to add to cart");
+            toast.error("Failed to add to cart. Please log in first.");
         }
     }
 

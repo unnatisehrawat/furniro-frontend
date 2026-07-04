@@ -7,6 +7,7 @@ import ProductInfo from "../../components/ProductInfo"
 import RelatedProducts from "../../components/RelatedProducts"
 import { useCart } from "@/app/context/CartContext";
 import { Rating } from 'react-simple-star-rating'
+import toast from "react-hot-toast"
 
 
 
@@ -14,7 +15,6 @@ import { Rating } from 'react-simple-star-rating'
 export default function ProductPage() {
     const { id } = useParams()
     const [product, setProduct] = useState(null)
-    const [quantity, setQuantity] = useState(1)
     const { refreshCartCount } = useCart();
 
     useEffect(() => {
@@ -32,12 +32,12 @@ export default function ProductPage() {
 
     async function handleAddToCart() {
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { productId: id, quantity }, { withCredentials: true })
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { productId: id }, { withCredentials: true })
             refreshCartCount();
-            alert("Added to cart!")
+            toast.success("Added to cart!")
         } catch (error) {
             console.log(error)
-            alert("Failed to add to cart")
+            toast.error("Failed to add to cart. Please log in first.")
         }
     }
 

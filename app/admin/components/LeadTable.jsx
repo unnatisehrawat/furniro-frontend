@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function LeadTable({ leads, refresh }) {
     const router = useRouter();
@@ -13,7 +14,7 @@ export default function LeadTable({ leads, refresh }) {
             refresh()
         } catch (error) {
             console.log(error)
-            alert("Failed to delete lead")
+            toast.error("Failed to delete lead")
         }
     }
 

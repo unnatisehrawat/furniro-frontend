@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useCart } from "../../context/CartContext";
 import ShareModal from "./ShareModal";
 import FilterBar from "./FilterBar";
+import toast from "react-hot-toast";
 
 export default function ShopProducts() {
 
@@ -54,10 +55,10 @@ export default function ShopProducts() {
         try {
             await axios.post(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { productId }, { withCredentials: true });
             refreshCartCount();
-            alert("Added to cart!");
+            toast.success("Added to cart!");
         } catch (error) {
             console.log(error);
-            alert("Failed to add to cart. Please log in first.");
+            toast.error("Failed to add to cart. Please log in first.");
         }
     }
 

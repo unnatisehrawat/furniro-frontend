@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function ProductTable({ products, refresh }) {
     async function deleteProduct(id) {
@@ -10,7 +11,7 @@ export default function ProductTable({ products, refresh }) {
             refresh();
         } catch (error) {
             console.log(error);
-            alert("Failed to delete product");
+            toast.error("Failed to delete product");
         }
     }
 

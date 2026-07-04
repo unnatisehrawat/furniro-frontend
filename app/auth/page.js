@@ -2,9 +2,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/app/context/CartContext";
+import toast from "react-hot-toast";
 
 export default function AuthPage() {
   const router = useRouter();
+  const { refreshCartCount } = useCart();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -35,6 +38,7 @@ export default function AuthPage() {
 
       await axios.post(endpoint, payload, { withCredentials: true });
       
+      await refreshCartCount(); // refresh cart badge immediately after login
       router.push("/");
       
     } catch (err) {

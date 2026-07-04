@@ -2,6 +2,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { X, Upload } from "lucide-react"
+import toast from "react-hot-toast"
 
 export default function AddCategoryModal({ close, refresh }) {
     const [name, setName] = useState("")
@@ -22,7 +23,7 @@ export default function AddCategoryModal({ close, refresh }) {
             close()
         } catch (error) {
             console.log(error)
-            alert("Failed to add category")
+            toast.error("Failed to add category")
         } finally {
             setIsSubmitting(false);
         }

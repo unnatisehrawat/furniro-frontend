@@ -2,6 +2,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useCart } from "../../context/CartContext"
+import toast from "react-hot-toast"
 
 export default function CartTable(){
     const [cart, setCart] = useState({ items: [] }) 
@@ -16,7 +17,7 @@ export default function CartTable(){
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cart`, { withCredentials: true }) 
             setCart(data)
         } catch (error) {
-            alert('failed to fetch cart')
+            toast.error('Failed to fetch cart')
             console.log(error)
         }
     }
@@ -28,7 +29,7 @@ export default function CartTable(){
             refreshCartCount()
         } catch (error) {
             console.log(error)
-            alert("Failed to remove item")
+            toast.error("Failed to remove item")
         }
     }
 
